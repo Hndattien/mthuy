@@ -362,7 +362,7 @@
 </head>
 <body>
 
-  <audio id="backgroundMusic" loop preload="auto">
+  <audio id="backgroundMusic" loop>
   <source src="https://raw.githubusercontent.com/Hndattien/mthuy/main/music.mp3" type="audio/mpeg">
   Trình duyệt của bạn không hỗ trợ audio
   </audio>
@@ -409,18 +409,7 @@
     const audio = document.getElementById('backgroundMusic');
 
     function handleHeartClick() {
-      audio.muted = false;
-
-      // Phát nhạc sau user interaction
-      const playPromise = audio.play();
-      
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          // Hiển thị nút play thủ công cho mobile
-          showManualPlayButton();
-        });
-      }
-
+      audio.play().catch(error => console.log('Lỗi phát nhạc:', error));
       heart.classList.add('fly-up');
       heartContainer.style.opacity = '0';
       setTimeout(() => {
